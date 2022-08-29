@@ -17,12 +17,13 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./../src/*"],
       "@common/*": ["./src/*"]
     }
   },
   "include": [
-    "next-env.d.ts",
-    "next-auth.d.ts",
+    "../next-env.d.ts",
+    "../next-auth.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js"
