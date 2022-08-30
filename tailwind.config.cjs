@@ -1,27 +1,22 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./app-common/**/*.{js,ts,jsx,tsx}"
-  ],
+const { colors } = require("../theme.config.js");
 
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("daisyui"),
-  ],
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./app-common/**/*.{js,ts,jsx,tsx}"],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
+    darkTheme: "business",
     themes: [
-      'light',
       {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          ...colors,
+        },
         dark: {
-          ...require('daisyui/src/colors/themes')["[data-theme=business]"],
-          primary: '#48b16d',
-          secondary: '#555'
-        }
-      }
-    ]
-  }
+          ...require("daisyui/src/colors/themes")["[data-theme=business]"],
+          ...colors
+        },
+      },
+    ],
+  },
 };
