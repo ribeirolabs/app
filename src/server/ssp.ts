@@ -24,8 +24,8 @@ export const ssp = async (
     router: appRouter,
     transformer: superjson,
     ctx: {
-      // req: undefined,
-      // res: undefined,
+      req: undefined,
+      res: undefined,
       session: session,
       prisma: prisma,
     },
