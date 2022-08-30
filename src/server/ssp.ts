@@ -31,10 +31,23 @@ export const ssp = async (
     },
   });
 
-  await Promise.all([
-    ssr.fetchQuery("auth.getSession"),
-    ...([] as Promise<any>[]).concat(cb(ssr)),
-  ]);
+  try {
+    await Promise.all([
+      ssr.fetchQuery("auth.getSession"),
+      ...([] as Promise<any>[]).concat(cb(ssr)),
+    ]);
+  } catch (e: any) {
+    if (e.code === "UNAUTHORIZED") {
+      return {
+        redirect: {
+          permanent: false,
+          destination: `/auth/signin?callbackUrl${encodeURIComponent(
+            ctx.resolvedUrl
+          )}`,
+        },
+      };
+    }
+  }
 
   return {
     props: {
