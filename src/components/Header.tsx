@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { ChevronDownIcon } from "@common/components/Icons";
+import { appName } from "@/app.config";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
@@ -13,10 +14,7 @@ export const HeaderBase = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const AppHeader = ({
-  appName,
-  children,
-}: PropsWithChildren<{ appName: string }>) => {
+export const AppHeader = ({ children }: PropsWithChildren) => {
   return (
     <HeaderBase>
       <div>

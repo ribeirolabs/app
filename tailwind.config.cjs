@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-const { colors } = require("../theme.config.js");
+const { theme } = require("../src/app.config.js");
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}", "./app-common/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./app-common/src/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     darkTheme: "business",
@@ -10,11 +10,11 @@ module.exports = {
       {
         light: {
           ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-          ...colors,
+          ...theme.colors,
         },
         dark: {
           ...require("daisyui/src/colors/themes")["[data-theme=business]"],
-          ...colors
+          ...theme.colors
         },
       },
     ],

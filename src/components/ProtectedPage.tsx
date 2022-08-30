@@ -13,6 +13,9 @@ export const ProtectedPage = ({ children }: { children: ReactNode }) => {
         window.location.pathname + window.location.search
       );
 
+      console.log("signin");
+      console.log(session.data);
+
       router.push("/auth/signin?callbackUrl=" + callbackUrl);
     }
   }, [session, router]);
