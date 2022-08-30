@@ -51,7 +51,7 @@ export function HeaderLogo({ appName }: { appName: string }) {
   }, []);
 
   return (
-    <div className="items-baseline text-secondary">
+    <div className="items-baseline">
       <span className="hidden lg:inline-block">ribeirolabs</span>
       <span className="lg:hidden">r</span>
       <span className="mx-1">/</span>

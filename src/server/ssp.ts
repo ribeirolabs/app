@@ -24,8 +24,6 @@ export const ssp = async (
     router: appRouter,
     transformer: superjson,
     ctx: {
-      // req: undefined,
-      // res: undefined,
       session: session,
       prisma: prisma,
     },
@@ -52,6 +50,7 @@ export const ssp = async (
   return {
     props: {
       trpcState: ssr.dehydrate(),
+      locale: ctx.locale,
     },
   };
 };
