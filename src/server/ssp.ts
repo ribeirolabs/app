@@ -2,7 +2,7 @@ import superjson from "superjson";
 import { prisma } from "@/server/db/client";
 import { createSSGHelpers } from "@trpc/react/ssg";
 import { appRouter } from "@/server/router";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@common/pages/auth/nextauth";
 import { unstable_getServerSession } from "next-auth";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 
