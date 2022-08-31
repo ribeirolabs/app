@@ -45,6 +45,7 @@
 
   .btn-action {
     @apply btn btn-ghost btn-circle;
+    min-height: 0;
   }
 
   .btn-form-group {
