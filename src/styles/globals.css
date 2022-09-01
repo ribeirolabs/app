@@ -29,7 +29,7 @@
   }
 
   .btn {
-    @apply no-animation font-bold;
+    @apply no-animation font-bold rounded-full;
   }
 
   .btn:active,
@@ -88,6 +88,39 @@
   .modal {
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(2px);
+  }
+
+  .editable {
+    cursor: pointer;
+  }
+
+  .editable > :first-child {
+    border: 1px solid hsl(var(--s));
+    position: relative;
+    padding: 4px;
+    outline: none;
+  }
+  .editable > :first-child:focus {
+    cursor: text;
+    border-color: hsl(var(--p));
+  }
+
+  .editable > :first-child:focus:before {
+    background-color: hsl(var(--p));
+  }
+
+  .editable > :first-child:before {
+    @apply rounded-full;
+
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: hsl(var(--s));
   }
 }
 
