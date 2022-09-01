@@ -1,6 +1,6 @@
-/** @type {import('tailwindcss').Config} */
 const { theme } = require("../src/app.config.js");
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./app-common/src/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("@tailwindcss/typography"), require("daisyui")],

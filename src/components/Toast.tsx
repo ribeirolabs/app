@@ -15,6 +15,8 @@ export const addToast = (message: string, type: AlertType, id?: string) => {
   });
 };
 
+const randomId = () => crypto.randomUUID();
+
 export const ToastProvider = ({ children }: PropsWithChildren) => {
   const [toasts, setToasts] = useState<ToastWithId[]>([]);
 
@@ -22,26 +24,29 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
     setToasts((toasts) => toasts.filter((toast) => toast.id !== id));
   }, []);
 
+  const add = useCallback(
+    (toast: ToastWithId) => {
+      remove(toast.id);
+
+      setToasts((toasts) => toasts.concat(toast));
+    },
+    [remove]
+  );
+
   useEvent(
     "toast",
     useCallback(
       (e) => {
-        const id = e.detail.id ?? window.crypto.randomUUID();
-
-        if (e.detail.id) {
-          remove(id);
-        }
+        const id = e.detail.id ?? randomId();
 
         setTimeout(() => remove(id), TOAST_TIMEOUT);
 
-        setToasts((toasts) =>
-          toasts.concat({
-            ...e.detail,
-            id,
-          })
-        );
+        add({
+          ...e.detail,
+          id,
+        });
       },
-      [remove]
+      [remove, add]
     )
   );
 

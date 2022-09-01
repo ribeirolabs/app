@@ -5,18 +5,38 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
 import { ToastProvider } from "@common/components/Toast";
+import App, { AppContext } from "next/app";
+import { parseCookies } from "nookies";
+import { SettingsProvider } from "@common/components/Settings";
 
 const MyApp: AppType = ({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: { session, settings, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-      <ToastProvider>
-        <Component {...pageProps} />
-      </ToastProvider>
+      <SettingsProvider initial={settings}>
+        <ToastProvider>
+          <Component {...pageProps} />
+        </ToastProvider>
+      </SettingsProvider>
     </SessionProvider>
   );
+};
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const pageProps = await App.getInitialProps(appContext);
+
+  const settings: AppSettings = JSON.parse(
+    parseCookies(appContext.ctx)["@ribeirolabs:settings"] || "{}"
+  );
+
+  return {
+    pageProps: {
+      ...pageProps.pageProps,
+      settings,
+    },
+  };
 };
 
 const getBaseUrl = () => {
