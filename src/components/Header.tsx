@@ -2,9 +2,17 @@ import { trpc } from "@/utils/trpc";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PropsWithChildren, useEffect, useMemo, useState } from "react";
+import {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { ChevronDownIcon } from "@common/components/Icons";
 import { appName } from "@/app.config";
+import { useEvent } from "@ribeirolabs/events/react";
+import { useIsFetching } from "react-query";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
@@ -31,6 +39,7 @@ export const AppHeader = ({ children }: PropsWithChildren) => {
 export function HeaderLogo({ appName }: { appName: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const isFetching = useIsFetching();
 
   useEffect(() => {
     function onStart() {
@@ -60,7 +69,7 @@ export function HeaderLogo({ appName }: { appName: string }) {
           <span>{appName.toLowerCase()}</span>
           <button
             className={`btn btn-ghost btn-xs ml-2 ${
-              loading ? "opacity-1" : "opacity-0"
+              loading || isFetching ? "opacity-1" : "opacity-0"
             }`}
             data-loading={true}
           >
