@@ -80,6 +80,10 @@
   tr.align-top td {
     vertical-align: top;
   }
+
+  .toast {
+    @apply print:hidden;
+  }
 }
 
 @layer utilities {
@@ -102,4 +106,10 @@
 
 [data-open="false"] {
   @remove modal-close;
+}
+
+@media print {
+  nextjs-portal {
+    display: none;
+  }
 }
