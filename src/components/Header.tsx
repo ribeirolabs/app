@@ -8,7 +8,7 @@ import { appName } from "@/app.config";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
-    <header className="not-prose navbar bg-base-300 sticky top-0 z-50">
+    <header className="print:hidden not-prose navbar bg-base-300 sticky top-0 z-50">
       <div className="w-content flex justify-between">{children}</div>
     </header>
   );
