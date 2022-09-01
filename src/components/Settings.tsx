@@ -6,9 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useMemo,
   useReducer,
-  useRef,
 } from "react";
 
 export const SETTINGS_KEY = "@ribeirolabs:settings";
@@ -41,7 +39,7 @@ function settingsReducer(settings: AppSettings, action: Action) {
   if (action.type === "SET") {
     const value =
       typeof action.value === "function"
-        ? action.value(settings[action.key])
+        ? action.value(settings[action.key] ?? defaultSettings[action.key])
         : action.value;
 
     return {
