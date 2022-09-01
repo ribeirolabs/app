@@ -44,6 +44,14 @@ export const ssp = async (
           )}`,
         },
       };
+    } else if (ctx.query.error !== e.code) {
+      const [url] = ctx.resolvedUrl.split("?");
+      return {
+        redirect: {
+          permanent: false,
+          destination: `${url}?error=${e.code}`,
+        },
+      };
     }
   }
 
