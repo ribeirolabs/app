@@ -17,7 +17,7 @@ import { useIsFetching } from "react-query";
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
     <header className="print:hidden not-prose navbar bg-base-300 sticky top-0 z-50 drop-shadow-lg">
-      <div className="w-content flex justify-between">{children}</div>
+      <div className="w-content flex justify-between gap-2">{children}</div>
     </header>
   );
 };
