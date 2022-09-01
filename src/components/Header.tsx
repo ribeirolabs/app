@@ -16,7 +16,7 @@ import { useIsFetching } from "react-query";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
-    <header className="print:hidden not-prose navbar bg-base-300 sticky top-0 z-50">
+    <header className="print:hidden not-prose navbar bg-base-300 sticky top-0 z-50 drop-shadow-lg">
       <div className="w-content flex justify-between">{children}</div>
     </header>
   );
@@ -25,13 +25,9 @@ export const HeaderBase = ({ children }: PropsWithChildren) => {
 export const AppHeader = ({ children }: PropsWithChildren) => {
   return (
     <HeaderBase>
-      <div>
-        <HeaderLogo appName={appName} />
-      </div>
-      <div>{children}</div>
-      <div>
-        <HeaderUser />
-      </div>
+      <HeaderLogo appName={appName} />
+      <div className="flex-1">{children}</div>
+      <HeaderUser />
     </HeaderBase>
   );
 };
@@ -60,7 +56,7 @@ export function HeaderLogo({ appName }: { appName: string }) {
   }, []);
 
   return (
-    <div className="items-baseline">
+    <div className="flex-0 items-baseline">
       <span className="hidden lg:inline-block">ribeirolabs</span>
       <span className="lg:hidden">r</span>
       <span className="mx-1">/</span>
@@ -68,7 +64,7 @@ export function HeaderLogo({ appName }: { appName: string }) {
         <a className="text-primary font-bold normal-case">
           <span>{appName.toLowerCase()}</span>
           <button
-            className={`btn btn-ghost btn-xs ml-2 ${
+            className={`btn btn-ghost btn-xs ${
               loading || isFetching ? "opacity-1" : "opacity-0"
             }`}
             data-loading={true}
