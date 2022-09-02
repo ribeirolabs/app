@@ -52,7 +52,7 @@ export const Alert = ({
 
   return (
     <div
-      className={`alert ${className} cursor-pointer min-w-[400px] ${
+      className={`alert ${className} cursor-pointer sm:w-full ${
         fluid ? "w-full" : ""
       }`}
       onClick={onClick}

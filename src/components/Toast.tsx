@@ -39,7 +39,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
       (e) => {
         const id = e.detail.id ?? randomId();
 
-        setTimeout(() => remove(id), TOAST_TIMEOUT);
+        // setTimeout(() => remove(id), TOAST_TIMEOUT);
 
         add({
           ...e.detail,
@@ -54,7 +54,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
     <>
       {children}
 
-      <div className="toast">
+      <div className="toast top-0 left-0 md:top-auto md:left-auto pointer-events-none">
         {toasts.map(({ id, ...props }) => (
           <Alert key={id} type={props.type} onClick={() => remove(id)}>
             {props.message}

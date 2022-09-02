@@ -82,7 +82,11 @@
   }
 
   .toast {
-    @apply print:hidden;
+    @apply print:hidden z-[1000];
+  }
+
+  .toast .alert {
+    pointer-events: all;
   }
 
   .modal {
