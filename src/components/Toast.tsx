@@ -39,7 +39,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
       (e) => {
         const id = e.detail.id ?? randomId();
 
-        // setTimeout(() => remove(id), TOAST_TIMEOUT);
+        setTimeout(() => remove(id), TOAST_TIMEOUT);
 
         add({
           ...e.detail,
