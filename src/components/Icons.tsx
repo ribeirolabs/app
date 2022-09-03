@@ -8,6 +8,7 @@ export const Icon = ({ size = 18, children }: IconProps) => {
   }
 
   return cloneElement(children, {
+    // @ts-ignore
     style: { width: size, height: size },
     className: "",
   });
@@ -377,6 +378,27 @@ export const SyncIcon = (props: IconProps) => {
           fillRule="evenodd"
           d="M4.755 10.059a7.5 7.5 0 0112.548-3.364l1.903 1.903h-3.183a.75.75 0 100 1.5h4.992a.75.75 0 00.75-.75V4.356a.75.75 0 00-1.5 0v3.18l-1.9-1.9A9 9 0 003.306 9.67a.75.75 0 101.45.388zm15.408 3.352a.75.75 0 00-.919.53 7.5 7.5 0 01-12.548 3.364l-1.902-1.903h3.183a.75.75 0 000-1.5H2.984a.75.75 0 00-.75.75v4.992a.75.75 0 001.5 0v-3.18l1.9 1.9a9 9 0 0015.059-4.035.75.75 0 00-.53-.918z"
           clipRule="evenodd"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
+export const OpenExternalIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
         />
       </svg>
     </Icon>
