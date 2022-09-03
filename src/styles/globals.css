@@ -132,6 +132,10 @@
   .w-content {
     @apply container mx-auto;
   }
+
+  .w-content-sm {
+    @apply max-w-[600px];
+  }
 }
 
 [data-loading="true"] {

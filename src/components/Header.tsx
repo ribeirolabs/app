@@ -63,16 +63,16 @@ export function HeaderLogo({ appName }: { appName: string }) {
       <Link href="/">
         <a className="text-primary font-bold normal-case">
           <span>{appName.toLowerCase()}</span>
-          <button
-            className={`btn btn-ghost btn-xs ${
-              loading || isFetching ? "opacity-1" : "opacity-0"
-            }`}
-            data-loading={true}
-          >
-            &nbsp;
-          </button>
         </a>
       </Link>
+      <button
+        className={`btn btn-ghost text-primary btn-xs ${
+          loading || isFetching ? "opacity-1" : "opacity-0"
+        }`}
+        data-loading={true}
+      >
+        &nbsp;
+      </button>
     </div>
   );
 }
