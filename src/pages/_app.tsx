@@ -8,17 +8,21 @@ import { ToastProvider } from "@common/components/Toast";
 import App, { AppContext } from "next/app";
 import { parseCookies } from "nookies";
 import { SettingsProvider } from "@common/components/Settings";
+import { ErrorProvider } from "@common/components/Error";
 
 const MyApp: AppType = ({
   Component,
-  pageProps: { session, settings, ...pageProps },
+  pageProps: { session, settings, error, ...pageProps },
 }) => {
+  console.log("ERROR", error?.code);
   return (
     <SessionProvider session={session}>
       <SettingsProvider initial={settings}>
-        <ToastProvider>
-          <Component {...pageProps} />
-        </ToastProvider>
+        <ErrorProvider code={error?.code}>
+          <ToastProvider>
+            <Component {...pageProps} />
+          </ToastProvider>
+        </ErrorProvider>
       </SettingsProvider>
     </SessionProvider>
   );

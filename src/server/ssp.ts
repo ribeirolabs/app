@@ -5,6 +5,7 @@ import { appRouter } from "@/server/router";
 import { authOptions } from "@common/pages/auth/nextauth";
 import { Session, unstable_getServerSession } from "next-auth";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import { TRPC_ERROR_CODE_KEY } from "@trpc/server/rpc";
 
 type Props = Record<string, any>;
 
@@ -30,6 +31,10 @@ export const ssp = async (
     },
   });
 
+  let error: {
+    code: TRPC_ERROR_CODE_KEY;
+  } | null = null;
+
   try {
     await Promise.all([
       ssr.fetchQuery("auth.getSession"),
@@ -45,20 +50,17 @@ export const ssp = async (
           )}`,
         },
       };
-    } else if (ctx.query.error !== e.code) {
-      const [url] = ctx.resolvedUrl.split("?");
-      return {
-        redirect: {
-          permanent: false,
-          destination: `${url}?error=${e.code}`,
-        },
-      };
     }
+
+    error = {
+      code: e.code,
+    };
   }
 
   return {
     props: {
       trpcState: ssr.dehydrate(),
+      error,
     },
   };
 };
