@@ -10,7 +10,7 @@ const BackHomepage = () => (
   <Link href="/">
     <a className="btn btn-secondary btn-wide gap-2">
       <ArrowLeftIcon size={20} />
-      {translations.back_homepage}
+      {translations?.back_homepage ?? "Back to homepage"}
     </a>
   </Link>
 );
@@ -66,7 +66,7 @@ export const ErrorPage = ({
       </div>
 
       <h1 className="align-middle">
-        {errors[code] ?? DEFAULT_ERRORS[code] ?? code}
+        {errors?.[code] ?? DEFAULT_ERRORS[code] ?? code}
       </h1>
 
       <BackHomepage />
