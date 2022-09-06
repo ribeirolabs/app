@@ -58,12 +58,6 @@ export const ssp = async (
       };
     }
 
-    // if (errorCode === "NOT_FOUND") {
-    //   return {
-    //     notFound: true,
-    //   };
-    // }
-
     ctx.res.statusCode = TRPC_ERROR_TO_HTTP_STATUS[errorCode!];
   }
 

@@ -49,6 +49,7 @@ const DEFAULT_ERRORS: Partial<Record<TRPC_ERROR_CODE_KEY, string>> = {
   NOT_FOUND: "Page not found",
   FORBIDDEN: "You don't have access to this page",
   INTERNAL_SERVER_ERROR: "Something went wrong",
+  BAD_REQUEST: "Invalid information",
 };
 
 export const ErrorPage = ({
