@@ -1,3 +1,4 @@
+import { appName } from "@/app.config";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -6,7 +7,7 @@ export default function Document() {
       <Head />
       <link rel="icon" href="/favicon.png" />
       <link rel="manifest" href="/manifest.json" />
-      <title>Invoice / RibeiroLabs</title>
+      <title>{appName} / ribeirolabs</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
