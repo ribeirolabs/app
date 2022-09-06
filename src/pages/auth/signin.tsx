@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType } from "next";
 import { getProviders, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { appName } from "@/app.config";
+import { appName, translations } from "@/app.config";
 
 export async function getServerSideProps() {
   const providers = await getProviders();
@@ -29,7 +29,7 @@ export default function SignInPage({
             })
           }
         >
-          Sign in with {provider.name}
+          {translations?.sign_in ?? "Sign in with"} {provider.name}
         </button>
       ))}
     </div>

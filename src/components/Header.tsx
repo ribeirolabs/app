@@ -2,16 +2,9 @@ import { trpc } from "@/utils/trpc";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { ChevronDownIcon } from "@common/components/Icons";
-import { appName } from "@/app.config";
-import { useEvent } from "@ribeirolabs/events/react";
+import { appName, translations } from "@/app.config";
 import { useIsFetching } from "react-query";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
@@ -110,7 +103,7 @@ export function HeaderUser() {
       >
         <li>
           <button onClick={() => signOut({ callbackUrl: "/" })}>
-            Sign out
+            {translations?.sign_out ?? "Sign out"}
           </button>
         </li>
       </ul>

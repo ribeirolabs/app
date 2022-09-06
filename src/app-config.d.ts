@@ -9,6 +9,9 @@ interface AppConfig {
   };
   errors?: Record<import("@trpc/server/rpc").TRPC_ERROR_CODE_KEY, string>;
   translations?: {
+    sign_in: string;
+    sign_out: string;
+    back_homepage: string;
     [key: string]: string;
   };
 }
