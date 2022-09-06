@@ -1,15 +1,15 @@
 import { cloneElement, isValidElement, PropsWithChildren } from "react";
 
-export type IconProps = PropsWithChildren<{ size?: number }>;
+export type IconProps = PropsWithChildren<{ size?: number | string }>;
 
-export const Icon = ({ size = 18, children }: IconProps) => {
+export const Icon = ({ size = "1em", children }: IconProps) => {
   if (!isValidElement(children)) {
     return <>{children}</>;
   }
 
   return cloneElement(children, {
     // @ts-ignore
-    style: { width: size, height: size },
+    style: { width: size, height: size, display: "inline-block" },
     className: "",
   });
 };
@@ -399,6 +399,44 @@ export const OpenExternalIcon = (props: IconProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
+export const LockIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          fillRule="evenodd"
+          d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
+export const ArrowLeftIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          fillRule="evenodd"
+          d="M7.28 7.72a.75.75 0 010 1.06l-2.47 2.47H21a.75.75 0 010 1.5H4.81l2.47 2.47a.75.75 0 11-1.06 1.06l-3.75-3.75a.75.75 0 010-1.06l3.75-3.75a.75.75 0 011.06 0z"
+          clipRule="evenodd"
         />
       </svg>
     </Icon>

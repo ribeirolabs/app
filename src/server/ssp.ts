@@ -6,6 +6,7 @@ import { authOptions } from "@common/pages/auth/nextauth";
 import { Session, unstable_getServerSession } from "next-auth";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { TRPC_ERROR_CODE_KEY } from "@trpc/server/rpc";
+import { TRPC_ERROR_TO_HTTP_STATUS } from "@common/components/Errors";
 
 type Props = Record<string, any>;
 
@@ -31,17 +32,22 @@ export const ssp = async (
     },
   });
 
+  await ssr.fetchQuery("auth.getSession");
+
   let error: {
     code: TRPC_ERROR_CODE_KEY;
   } | null = null;
 
   try {
-    await Promise.all([
-      ssr.fetchQuery("auth.getSession"),
-      ...([] as Promise<any>[]).concat(cb(ssr, session)),
-    ]);
+    await Promise.all(([] as Promise<any>[]).concat(cb(ssr, session)));
   } catch (e: any) {
-    if (e.code === "UNAUTHORIZED") {
+    const errorCode: TRPC_ERROR_CODE_KEY = e.code;
+
+    error = {
+      code: errorCode,
+    };
+
+    if (errorCode === "UNAUTHORIZED") {
       return {
         redirect: {
           permanent: false,
@@ -52,9 +58,13 @@ export const ssp = async (
       };
     }
 
-    error = {
-      code: e.code,
-    };
+    // if (errorCode === "NOT_FOUND") {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
+
+    ctx.res.statusCode = TRPC_ERROR_TO_HTTP_STATUS[errorCode!];
   }
 
   return {

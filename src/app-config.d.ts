@@ -8,4 +8,7 @@ interface AppConfig {
     };
   };
   errors: Record<import("@trpc/server/rpc").TRPC_ERROR_CODE_KEY, string>;
+  translations: {
+    [key: string]: string;
+  };
 }

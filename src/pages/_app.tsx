@@ -1,4 +1,3 @@
-// src/pages/_app.tsx
 import { withTRPC } from "@trpc/next";
 import type { AppRouter } from "@/server/router";
 import type { AppType } from "next/dist/shared/lib/utils";
@@ -8,21 +7,20 @@ import { ToastProvider } from "@common/components/Toast";
 import App, { AppContext } from "next/app";
 import { parseCookies } from "nookies";
 import { SettingsProvider } from "@common/components/Settings";
-import { ErrorProvider } from "@common/components/Error";
+import { ErrorPage } from "@common/components/Errors";
 
 const MyApp: AppType = ({
   Component,
   pageProps: { session, settings, error, ...pageProps },
 }) => {
-  console.log("ERROR", error?.code);
   return (
     <SessionProvider session={session}>
       <SettingsProvider initial={settings}>
-        <ErrorProvider code={error?.code}>
-          <ToastProvider>
+        <ToastProvider>
+          <ErrorPage code={error?.code}>
             <Component {...pageProps} />
-          </ToastProvider>
-        </ErrorProvider>
+          </ErrorPage>
+        </ToastProvider>
       </SettingsProvider>
     </SessionProvider>
   );
@@ -63,7 +61,16 @@ export default withTRPC<AppRouter>({
       /**
        * @link https://react-query.tanstack.com/reference/QueryClient
        */
-      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
+      queryClientConfig: {
+        defaultOptions: {
+          queries: {
+            refetchOnMount: false,
+            refetchOnReconnect: false,
+            refetchOnWindowFocus: false,
+            refetchIntervalInBackground: false,
+          },
+        },
+      },
     };
   },
   /**
