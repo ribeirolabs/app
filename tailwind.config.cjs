@@ -11,6 +11,9 @@ module.exports = {
         light: {
           ...require("daisyui/src/colors/themes")["[data-theme=light]"],
           ...theme.colors,
+          "--rounded-box": "0.25rem",
+          "--rounded-btn": ".125rem",
+          "--rounded-badge": ".125rem",
         },
         dark: {
           ...require("daisyui/src/colors/themes")["[data-theme=business]"],
