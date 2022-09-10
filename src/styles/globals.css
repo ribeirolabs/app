@@ -143,6 +143,14 @@
   .app-sidebar-backdrop[data-opened="true"] {
     @apply opacity-100 pointer-events-auto md:opacity-0 md:pointer-events-none print:hidden;
   }
+
+  .table tr:nth-child(even) :where(td, th) {
+    @apply bg-opacity-50 bg-base-200;
+  }
+
+  .table-actions {
+    @apply menu menu-horizontal bg-base-300 rounded-box;
+  }
 }
 
 @layer utilities {
