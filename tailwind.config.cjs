@@ -4,6 +4,13 @@ const { theme } = require("../src/app.config.js");
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./app-common/src/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  theme: {
+    extend: {
+      gridTemplateColumns: {
+        'page': 'auto max-content'
+      }
+    }
+  },
   daisyui: {
     darkTheme: "business",
     themes: [

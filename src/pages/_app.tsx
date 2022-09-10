@@ -12,7 +12,7 @@ import { ErrorPage } from "@common/components/Errors";
 const MyApp: AppType = ({
   Component,
   pageProps: { session, settings, error, ...pageProps },
-}) => {
+}: any) => {
   return (
     <SessionProvider session={session}>
       <SettingsProvider initial={settings}>

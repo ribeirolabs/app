@@ -1,7 +1,7 @@
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
-import { Header } from "@/components/Header";
+import { AppShell } from "./AppShell";
 
 export const ProtectedPage = ({ children }: { children: ReactNode }) => {
   const session = trpc.useQuery(["auth.getSession"]);
@@ -21,11 +21,5 @@ export const ProtectedPage = ({ children }: { children: ReactNode }) => {
     return null;
   }
 
-  return (
-    <>
-      <Header />
-
-      <main className="p-4">{children}</main>
-    </>
-  );
+  return <AppShell>{children}</AppShell>;
 };

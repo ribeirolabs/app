@@ -126,6 +126,23 @@
     height: 16px;
     background-color: hsl(var(--s));
   }
+
+  .app-sidebar {
+    @apply fixed left-[100%] top-0 z-50 h-screen bg-base-100 w-80 transition-transform border-base-300 translate-x-0;
+    @apply md:h-full md:static md:z-0 md:p-0 md:border-x print:hidden;
+  }
+
+  .app-sidebar[data-opened="true"] {
+    @apply -translate-x-full md:transform-none;
+  }
+
+  .app-sidebar-backdrop {
+    @apply fixed right-0 top-0 z-50 bg-black/60 w-full h-screen backdrop-blur-sm opacity-0 pointer-events-none;
+  }
+
+  .app-sidebar-backdrop[data-opened="true"] {
+    @apply opacity-100 pointer-events-auto md:opacity-0 md:pointer-events-none print:hidden;
+  }
 }
 
 @layer utilities {

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { errors, translations } from "@/app.config";
 import { TRPC_ERROR_CODE_KEY } from "@trpc/server/rpc";
 import { PropsWithChildren } from "react";
-import { AppHeader } from "./Header";
 import { invert } from "@common/utils/invert";
 import { ArrowLeftIcon, LockIcon, WarningIcon } from "./Icons";
+import { AppShell } from "./AppShell";
 
 const BackHomepage = () => (
   <Link href="/">
@@ -16,12 +16,9 @@ const BackHomepage = () => (
 );
 
 const Container = ({ children }: PropsWithChildren) => (
-  <>
-    <AppHeader>
-      <div className="flex flex-1 justify-center"></div>
-    </AppHeader>
+  <AppShell>
     <div className="p-8 w-content text-center">{children}</div>
-  </>
+  </AppShell>
 );
 
 export const GenericError = () => {

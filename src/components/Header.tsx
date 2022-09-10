@@ -3,9 +3,10 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren, useEffect, useMemo, useState } from "react";
-import { ChevronDownIcon } from "@common/components/Icons";
+import { ChevronDownIcon, MenuIcon } from "@common/components/Icons";
 import { appName, translations } from "@/app.config";
 import { useIsFetching } from "react-query";
+import { dispatchCustomEvent } from "@ribeirolabs/events";
 
 export const HeaderBase = ({ children }: PropsWithChildren) => {
   return (
@@ -15,12 +16,16 @@ export const HeaderBase = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const AppHeader = ({ children }: PropsWithChildren) => {
+export const AppHeader = () => {
   return (
     <HeaderBase>
       <HeaderLogo appName={appName} />
-      <div className="flex-1">{children}</div>
-      <HeaderUser />
+      <button
+        className="md:hidden btn btn-circle btn-ghost"
+        onClick={() => dispatchCustomEvent("sidebar", "open")}
+      >
+        <MenuIcon size={22} />
+      </button>
     </HeaderBase>
   );
 };

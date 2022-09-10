@@ -4,6 +4,7 @@ interface Events {
     type: AlertType;
     message: string;
   };
+  sidebar: "open" | "close";
   modal:
     | {
         id: string;
