@@ -73,7 +73,7 @@
   }
 
   .table {
-    @apply mt-0;
+    @apply mt-0 border border-base-300 w-full;
   }
 
   tr.align-top th,
@@ -90,8 +90,21 @@
   }
 
   .modal {
+    @apply modal-bottom sm:modal-middle;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(2px);
+  }
+
+  .modal-box {
+    @apply md:max-w-xl p-0;
+  }
+
+  .modal-content {
+    @apply p-4;
+  }
+
+  .modal-action {
+    @apply bg-base-200 p-4 m-0;
   }
 
   .editable {
