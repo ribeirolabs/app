@@ -12,6 +12,7 @@ interface AppConfig {
     sign_in: string;
     sign_out: string;
     back_homepage: string;
+    cancel: string;
     [key: string]: string;
   };
 }
