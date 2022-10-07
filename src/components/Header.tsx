@@ -21,7 +21,7 @@ export const AppHeader = () => {
     <HeaderBase>
       <HeaderLogo appName={appName} />
       <button
-        className="md:hidden btn btn-circle btn-ghost"
+        className="lg:hidden btn btn-circle btn-ghost"
         onClick={() => dispatchCustomEvent("sidebar", "open")}
       >
         <MenuIcon size={22} />

@@ -142,11 +142,11 @@
 
   .app-sidebar {
     @apply fixed left-[100%] top-0 z-50 h-screen bg-base-100 w-80 transition-transform border-base-300 translate-x-0;
-    @apply md:h-full md:static md:z-0 md:p-0 md:border-x print:hidden;
+    @apply lg:h-full lg:static lg:z-0 lg:p-0 lg:border-x print:hidden;
   }
 
   .app-sidebar[data-opened="true"] {
-    @apply -translate-x-full md:transform-none;
+    @apply -translate-x-full lg:transform-none;
   }
 
   .app-sidebar-backdrop {
@@ -154,7 +154,7 @@
   }
 
   .app-sidebar-backdrop[data-opened="true"] {
-    @apply opacity-100 pointer-events-auto md:opacity-0 md:pointer-events-none print:hidden;
+    @apply opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none print:hidden;
   }
 
   .table tr:nth-child(even) :where(td, th) {
@@ -172,11 +172,15 @@
 
 @layer utilities {
   .w-content {
-    @apply container mx-auto;
+    @apply w-full px-4 xl:px-0 xl:container mx-auto;
   }
 
   .w-content-sm {
     @apply max-w-[600px];
+  }
+
+  .w-form {
+    @apply max-w-lg w-full;
   }
 }
 

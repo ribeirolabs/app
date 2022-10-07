@@ -443,6 +443,44 @@ export const ArrowLeftIcon = (props: IconProps) => {
   );
 };
 
+export const ArrowRightIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          fillRule="evenodd"
+          d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
+export const ArrowDownIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          fillRule="evenodd"
+          d="M12 2.25a.75.75 0 01.75.75v16.19l6.22-6.22a.75.75 0 111.06 1.06l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 111.06-1.06l6.22 6.22V3a.75.75 0 01.75-.75z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
 export const MenuIcon = (props: IconProps) => {
   return (
     <Icon {...props}>
@@ -479,6 +517,25 @@ export const LogoutIcon = (props: IconProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+        />
+      </svg>
+    </Icon>
+  );
+};
+
+export const CloseIcon = (props: IconProps) => {
+  return (
+    <Icon {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+          clipRule="evenodd"
         />
       </svg>
     </Icon>
