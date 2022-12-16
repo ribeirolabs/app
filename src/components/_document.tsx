@@ -14,6 +14,8 @@ export default function Document() {
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;800&display=swap"
         rel="stylesheet"
       />
+      <link rel="preconnect" href="https://rsms.me/" />
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       <SplashLinks />
       <body className="prose max-w-full">
         <Main />

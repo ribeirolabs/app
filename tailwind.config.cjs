@@ -9,6 +9,9 @@ module.exports = {
       gridTemplateColumns: {
         'page': 'auto max-content'
       }
+    },
+    fontFamily: {
+      brand: ['"JetBrains Mono", monospace']
     }
   },
   daisyui: {

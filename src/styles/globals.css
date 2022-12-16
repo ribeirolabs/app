@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: "JetBrains Mono", monospace;
+  :root {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root {
+      font-family: "Inter var", sans-serif;
+    }
   }
 
   h1,
@@ -29,7 +37,8 @@
   }
 
   .btn {
-    @apply no-animation font-bold rounded-full;
+    @apply no-animation font-black rounded-full;
+    letter-spacing: 0.05rem;
   }
 
   .btn:active,
@@ -46,6 +55,10 @@
   .btn-action {
     @apply btn-ghost btn-circle;
     min-height: 0;
+  }
+
+  .btn-outline {
+    border-color: #777;
   }
 
   .btn-form-group {
@@ -178,6 +191,14 @@
   .menu li :disabled {
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  .badge {
+    @apply font-bold font-brand;
+  }
+
+  .alert {
+    @apply font-bold;
   }
 }
 

@@ -18,7 +18,7 @@ export default function SignInPage({
 
   return (
     <div className="grid h-screen w-screen place-content-center">
-      <h2>ribeirolabs / {appName}</h2>
+      <h2 className="font-brand">ribeirolabs / {appName}</h2>
       {Object.values(providers ?? {}).map((provider) => (
         <button
           key={provider.name}

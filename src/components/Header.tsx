@@ -54,7 +54,7 @@ export function HeaderLogo({ appName }: { appName: string }) {
   }, []);
 
   return (
-    <div className="flex-0 items-baseline">
+    <div className="flex-0 items-baseline font-brand">
       <span className="hidden lg:inline-block">ribeirolabs</span>
       <span className="lg:hidden">r</span>
       <span className="mx-1">/</span>
