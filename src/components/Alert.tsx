@@ -54,13 +54,11 @@ export const Alert = ({
     <div
       className={`alert ${className} cursor-pointer sm:w-full ${
         fluid ? "w-full" : ""
-      }`}
+      } ${onClick == null ? "cursor-default" : ""}`}
       onClick={onClick}
     >
       <div>
-        <div>
-          <Icon size={24} />
-        </div>
+        <Icon size={24} />
 
         <span className="leading-4 text-sm">{children}</span>
       </div>
