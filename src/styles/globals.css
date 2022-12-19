@@ -6,7 +6,6 @@
   :root {
     font-family: "Inter", sans-serif;
     font-weight: 500;
-    letter-spacing: 0.03rem;
   }
 
   @supports (font-variation-settings: normal) {
@@ -37,8 +36,9 @@
   }
 
   .btn {
-    @apply no-animation font-black rounded-full;
-    letter-spacing: 0.05rem;
+    @apply no-animation font-black rounded-full gap-2;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
   }
 
   .btn:active,
@@ -55,6 +55,7 @@
   .btn-action {
     @apply btn-ghost btn-circle;
     min-height: 0;
+    font-size: 0.9rem;
   }
 
   .btn-outline {
@@ -98,6 +99,10 @@
   tr.align-top th,
   tr.align-top td {
     vertical-align: top;
+  }
+
+  .table :where(thead, tfoot) :where(th, td) {
+    @apply font-black;
   }
 
   .toast {

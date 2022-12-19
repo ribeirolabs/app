@@ -1,7 +1,7 @@
 import { createElement, InputHTMLAttributes, ReactNode } from "react";
 
 type InputProps<T = HTMLInputElement> = {
-  label: string;
+  label?: string;
   helper?: string;
   leading?: ReactNode;
   trailing?: ReactNode;
@@ -16,9 +16,11 @@ export function Input<T = HTMLInputElement>({
 }: InputProps<T>) {
   return (
     <div className="form-control w-full mb-2">
-      <label className="label">
-        <span className="label-text">{label}</span>
-      </label>
+      {label && (
+        <label className="label">
+          <span className="label-text">{label}</span>
+        </label>
+      )}
 
       <div className="input-group">
         {leading}

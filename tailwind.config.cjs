@@ -8,7 +8,10 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         'page': 'auto max-content'
-      }
+      },
+      fontSize: {
+        base: '.9rem'
+      },
     },
     fontFamily: {
       brand: ['"JetBrains Mono", monospace']
