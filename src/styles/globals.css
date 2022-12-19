@@ -58,6 +58,10 @@
     font-size: 0.9rem;
   }
 
+  .btn-action:disabled {
+    @apply btn-disabled;
+  }
+
   .btn-outline {
     border-color: #777;
   }
