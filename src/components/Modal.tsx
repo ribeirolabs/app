@@ -1,7 +1,7 @@
 import { translations } from "@/app.config";
 import { dispatchCustomEvent } from "@ribeirolabs/events";
 import { useEvent } from "@ribeirolabs/events/react";
-import { useState, useCallback, PropsWithChildren } from "react";
+import { useState, useCallback, PropsWithChildren, useEffect } from "react";
 import { Portal } from "./Portal";
 
 export const Modal = ({
@@ -21,21 +21,34 @@ export const Modal = ({
         const isOpen = detail.action === "open";
 
         setOpened(isOpen);
-
         onEvent(detail);
       },
       [onEvent]
     )
   );
 
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.code === "Escape") {
+        setOpened(false);
+      }
+    }
+
+    if (opened) {
+      window.addEventListener("keydown", onKeyDown);
+    } else {
+      window.removeEventListener("keydown", onKeyDown);
+    }
+  }, [opened]);
+
   return (
     <Portal id={id}>
-      <div className="modal" data-open={opened}>
+      <div role="dialog" className="modal" data-open={opened}>
         <div
           className="fixed top-0 left-0 w-full h-full cursor-pointer"
           onClick={() => closeModal(id)}
         ></div>
-        <div className="modal-box md:max-w-2xl">{children}</div>
+        <div className="modal-box md:max-w-2xl">{opened ? children : null}</div>
       </div>
     </Portal>
   );
@@ -44,17 +57,19 @@ export const Modal = ({
 export const ModalCancelButton = ({
   modalId,
   label,
+  className,
 }: {
   modalId: string;
   label?: string;
+  className?: string;
 }) => {
   return (
     <button
-      className="btn btn-ghost"
+      className={`btn btn-ghost ${className}`}
       onClick={() => closeModal(modalId)}
       type="button"
     >
-      {label ?? translations.cancel}
+      {label ?? translations.cancel ?? "cancel"}
     </button>
   );
 };
