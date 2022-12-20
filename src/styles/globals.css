@@ -217,6 +217,11 @@
   .alert {
     @apply font-bold;
     --tw-prose-bullets: currentColor;
+    --tw-prose-counters: currentColor;
+  }
+
+  .dropdown-content {
+    @apply shadow-lg shadow-base-300;
   }
 }
 
