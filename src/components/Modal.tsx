@@ -4,13 +4,21 @@ import { useEvent } from "@ribeirolabs/events/react";
 import { useState, useCallback, PropsWithChildren, useEffect } from "react";
 import { Portal } from "./Portal";
 
+const SIZES = {
+  sm: "modal-sm",
+  lg: "modal-lg",
+  default: "",
+} as const;
+
 export const Modal = ({
   id,
   children,
   onEvent = () => void {},
+  size = "default",
 }: PropsWithChildren<{
   id: string;
   onEvent?: (detail: Events["modal"]) => void;
+  size?: keyof typeof SIZES;
 }>) => {
   const [opened, setOpened] = useState(false);
 
@@ -43,12 +51,16 @@ export const Modal = ({
 
   return (
     <Portal id={id}>
-      <div role="dialog" className="modal" data-open={opened}>
+      <div
+        role="dialog"
+        className={`modal ${SIZES[size] ?? ""}`}
+        data-open={opened}
+      >
         <div
           className="fixed top-0 left-0 w-full h-full cursor-pointer"
           onClick={() => closeModal(id)}
         ></div>
-        <div className="modal-box md:max-w-2xl">{opened ? children : null}</div>
+        <div className="modal-box">{opened ? children : null}</div>
       </div>
     </Portal>
   );

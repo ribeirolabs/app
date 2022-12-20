@@ -127,6 +127,14 @@
     @apply md:max-w-xl p-0;
   }
 
+  .modal-sm .modal-box {
+    @apply md:max-w-md;
+  }
+
+  .modal-lg .modal-box {
+    @apply md:max-w-2xl;
+  }
+
   .modal-content {
     @apply p-4;
   }
@@ -208,6 +216,7 @@
 
   .alert {
     @apply font-bold;
+    --tw-prose-bullets: currentColor;
   }
 }
 
