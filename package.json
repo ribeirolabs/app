@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pwa-generate": "cd ../public && pwa-asset-generator logo.svg --padding 'calc(50vh - 25%)' -q 100"
+    "pwa-generate": "cd ../public && pwa-asset-generator logo.svg --padding 'calc(50vh - 25%)' -q 100",
+    "env:pull": "node ./scripts/env-pull.js"
   },
   "repository": {
     "type": "git",
