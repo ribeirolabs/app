@@ -6,6 +6,7 @@ import {
   SuccessIcon,
   WarningIcon,
 } from "@common/components/Icons";
+import { cn } from "@common/utils/classNames";
 
 const CLASSES = {
   alert: {
@@ -35,6 +36,7 @@ export type AlertProps = {
   children: ReactNode;
   fluid?: boolean;
   inverse?: boolean;
+  className?: string;
 };
 
 export const Alert = ({
@@ -43,18 +45,23 @@ export const Alert = ({
   children,
   fluid,
   inverse,
+  className,
 }: AlertProps) => {
   const Icon = ICONS[type];
 
-  const className = useMemo(() => {
+  const classes = useMemo(() => {
     return inverse ? CLASSES.text[type] : CLASSES.alert[type];
   }, [type, inverse]);
 
   return (
     <div
-      className={`alert ${className} cursor-pointer sm:w-full ${
-        fluid ? "w-full" : ""
-      } ${onClick == null ? "cursor-default" : ""}`}
+      className={cn(
+        "alert cursor-pointer sm:w-full",
+        fluid ? "w-full" : "",
+        onClick == null ? "cursor-default" : "",
+        classes,
+        className
+      )}
       onClick={onClick}
     >
       <div>
