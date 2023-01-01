@@ -1,4 +1,5 @@
 import { translations } from "@/app.config";
+import { cn } from "@common/utils/classNames";
 import { dispatchCustomEvent } from "@ribeirolabs/events";
 import { useEvent } from "@ribeirolabs/events/react";
 import { useState, useCallback, PropsWithChildren, useEffect } from "react";
@@ -70,14 +71,15 @@ export const ModalCancelButton = ({
   modalId,
   label,
   className,
+  ...props
 }: {
   modalId: string;
   label?: string;
-  className?: string;
-}) => {
+} & JSX.IntrinsicElements["button"]) => {
   return (
     <button
-      className={`btn btn-ghost ${className}`}
+      {...props}
+      className={cn("btn btn-ghost", className)}
       onClick={() => closeModal(modalId)}
       type="button"
     >

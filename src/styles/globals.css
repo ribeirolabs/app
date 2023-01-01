@@ -63,7 +63,7 @@
     @apply btn-disabled;
   }
 
-  .btn-outline {
+  .btn-outline:not(.btn-error, .btn-success, .btn-info, .btn-warning, .btn-primary) {
     border-color: #777;
   }
 
@@ -136,6 +136,10 @@
 
   .modal-action {
     @apply bg-base-200 p-4 m-0;
+  }
+
+  .modal-footer {
+    @apply flex gap-2 bg-base-300 p-4 justify-end;
   }
 
   .editable {
@@ -217,6 +221,10 @@
 
   .dropdown-content {
     @apply shadow-lg shadow-base-300;
+  }
+
+  .text-highlight {
+    @apply font-bold text-white whitespace-nowrap;
   }
 }
 
