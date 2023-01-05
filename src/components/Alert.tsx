@@ -64,7 +64,7 @@ export const Alert = ({
       )}
       onClick={onClick}
     >
-      <div>
+      <div className="w-full">
         <Icon size={24} />
 
         <span className="leading-4 text-sm">{children}</span>

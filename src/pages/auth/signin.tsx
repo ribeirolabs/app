@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType } from "next";
 import { getProviders, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { appName, translations } from "@/app.config";
+import { appName, auth, translations } from "@/app.config";
 
 export async function getServerSideProps() {
   const providers = await getProviders();
@@ -24,9 +24,21 @@ export default function SignInPage({
           key={provider.name}
           className="btn btn-lg btn-primary"
           onClick={() =>
-            signIn(provider.id, {
-              callbackUrl: (router.query.callbackUrl as string | null) ?? "/",
-            })
+            signIn(
+              provider.id,
+              {
+                callbackUrl: (router.query.callbackUrl as string | null) ?? "/",
+              },
+              {
+                scope: [
+                  "openid",
+                  "https://www.googleapis.com/auth/userinfo.email",
+                  "https://www.googleapis.com/auth/userinfo.profile",
+                ]
+                  .concat(auth?.scopes ?? [])
+                  .join(" "),
+              }
+            )
           }
         >
           {translations?.sign_in ?? "Sign in with"} {provider.name}

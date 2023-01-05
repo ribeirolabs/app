@@ -15,4 +15,7 @@ interface AppConfig {
     cancel: string;
     [key: string]: string;
   };
+  auth?: {
+    scopes: string[];
+  };
 }
