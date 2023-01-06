@@ -3,6 +3,7 @@ import { trpc } from "@/utils/trpc";
 import { dispatchCustomEvent } from "@ribeirolabs/events";
 import { useEvent } from "@ribeirolabs/events/react";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { PropsWithChildren, useCallback, useState } from "react";
 import { CloseIcon, LogoutIcon } from "./Icons";
 
@@ -28,6 +29,8 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
     return null;
   }
 
+  console.log(user);
+
   return (
     <>
       <div
@@ -38,9 +41,26 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
 
       <aside className="app-sidebar" data-opened={opened}>
         <div className="flex items-center justify-between px-4 pt-4 gap-2">
-          <div className="flex-1 truncate">
-            <div>{user.name}</div>
-          </div>
+          <Link href="/settings">
+            <a className="flex-1 flex items-center gap-4 no-underline">
+              <div className="rounded-full w-12 h-12 overflow-hidden bg-neutral">
+                {user.image && (
+                  <img
+                    className="m-0"
+                    src={user.image}
+                    alt={`${user.name}'s avatar`}
+                  />
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <div className="underline underline-offset-2 truncate font-bold">
+                  {user.name}
+                </div>
+                <span className="text-xs">Settings</span>
+              </div>
+            </a>
+          </Link>
 
           <div className="lg:hidden flex-0">
             <button className="btn btn-circle btn-ghost" onClick={close}>
