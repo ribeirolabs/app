@@ -29,8 +29,6 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
     return null;
   }
 
-  console.log(user);
-
   return (
     <>
       <div
@@ -42,7 +40,10 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
       <aside className="app-sidebar" data-opened={opened}>
         <div className="flex items-center justify-between px-4 pt-4 gap-2">
           <Link href="/settings">
-            <a className="flex-1 flex items-center gap-4 no-underline">
+            <a
+              className="flex-1 flex items-center gap-4 no-underline"
+              onClick={close}
+            >
               <div className="rounded-full w-12 h-12 overflow-hidden bg-neutral">
                 {user.image && (
                   <img
