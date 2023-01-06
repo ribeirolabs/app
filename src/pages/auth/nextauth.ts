@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/server/db/client";
 import { env } from "@/env/server.mjs";
+import { getLocale, getTimezone } from "@common/utils/locale";
 
 const authorizationUrl = new URL(
   "https://accounts.google.com/o/oauth2/v2/auth"
@@ -34,23 +35,22 @@ export const authOptions: NextAuthOptions = {
       if (access_token == null) {
         throw new Error("[sign-in] Missing access_token");
       }
-      await prisma.account.upsert({
-        update: {
+      await prisma.user.update({
+        data: {
+          locale: getLocale(),
+          timezone: getTimezone(),
+        },
+        where: {
+          email,
+        },
+      });
+      await prisma.account.update({
+        data: {
           access_token: account.access_token,
           id_token: account.id_token,
           scope: account.scope,
           expires_at: account.expires_at,
           refresh_token: account.refresh_token,
-          user: {
-            connect: {
-              email,
-            },
-          },
-        },
-        create: {
-          ...account,
-          access_token,
-          userId: undefined,
           user: {
             connect: {
               email,
