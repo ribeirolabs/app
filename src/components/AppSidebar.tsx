@@ -3,6 +3,7 @@ import { trpc } from "@/utils/trpc";
 import { dispatchCustomEvent } from "@ribeirolabs/events";
 import { useEvent } from "@ribeirolabs/events/react";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { PropsWithChildren, useCallback, useState } from "react";
 import { CloseIcon, LogoutIcon } from "./Icons";
@@ -44,10 +45,11 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
               className="flex-1 flex items-center gap-4 no-underline"
               onClick={close}
             >
-              <div className="rounded-full w-12 h-12 overflow-hidden bg-neutral">
+              <div className="relative rounded-full w-12 h-12 overflow-hidden bg-neutral">
                 {user.image && (
-                  <img
+                  <Image
                     className="m-0"
+                    layout="fill"
                     src={user.image}
                     alt={`${user.name}'s avatar`}
                   />
