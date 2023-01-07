@@ -92,7 +92,7 @@
   }
 
   .table {
-    @apply mt-0 border border-base-300 w-full;
+    @apply mt-0 w-full;
   }
 
   tr.align-top th,
@@ -224,7 +224,7 @@
   }
 
   .text-highlight {
-    @apply font-bold text-white whitespace-nowrap;
+    @apply font-bold text-base-content whitespace-nowrap;
   }
 }
 
