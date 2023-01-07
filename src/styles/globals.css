@@ -120,6 +120,7 @@
 
   .modal-box {
     @apply md:max-w-xl p-0;
+    max-height: calc(100dvh - 5em);
   }
 
   .modal-sm .modal-box {
