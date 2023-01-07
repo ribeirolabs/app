@@ -1,3 +1,4 @@
+import { cn } from "@common/utils/classNames";
 import { createElement, InputHTMLAttributes, ReactNode } from "react";
 
 type InputProps<T = HTMLInputElement> = {
@@ -26,7 +27,7 @@ export function Input<T = HTMLInputElement>({
         {leading}
         {createElement(props.type === "textarea" ? "textarea" : "input", {
           ...props,
-          className: "input input-bordered w-full",
+          className: cn("input input-bordered w-full", props.className),
         })}
         {trailing}
       </div>
