@@ -5,7 +5,10 @@ import { dispatchCustomEvent } from "@ribeirolabs/events";
 
 type ToastWithId = Pick<AlertProps, "type"> & { id: string; message: string };
 
-const TOAST_TIMEOUT = 3000;
+const TOAST_TIMEOUT: Record<string, number> = {
+  error: 5000,
+  default: 3000,
+};
 
 export const addToast = (message: string, type: AlertType, id?: string) => {
   dispatchCustomEvent("toast", {
@@ -39,7 +42,10 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
       (e) => {
         const id = e.detail.id ?? randomId();
 
-        setTimeout(() => remove(id), TOAST_TIMEOUT);
+        setTimeout(
+          () => remove(id),
+          TOAST_TIMEOUT[e.detail.type] ?? TOAST_TIMEOUT.default
+        );
 
         add({
           ...e.detail,
@@ -54,7 +60,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
     <>
       {children}
 
-      <div className="toast top-0 left-0 md:top-auto md:left-auto pointer-events-none">
+      <div className="toast toast-top toast-center w-[max-content] min-w-[300px] pointer-events-none">
         {toasts.map(({ id, ...props }) => (
           <Alert key={id} type={props.type} onClick={() => remove(id)}>
             {props.message}

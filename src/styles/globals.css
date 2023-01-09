@@ -215,7 +215,7 @@
   }
 
   .alert {
-    @apply font-bold;
+    @apply font-bold items-stretch md:items-center;
     --tw-prose-bullets: currentColor;
     --tw-prose-counters: currentColor;
   }
