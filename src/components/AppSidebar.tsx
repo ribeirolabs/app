@@ -10,10 +10,7 @@ import { CloseIcon, LogoutIcon } from "./Icons";
 
 export const AppSidebar = ({ children }: PropsWithChildren) => {
   const [opened, setOpened] = useState(false);
-
-  const session = trpc.useQuery(["auth.getSession"]);
-
-  const user = session.data?.user;
+  const { data: user } = trpc.useQuery(["user.me"]);
 
   function close() {
     setOpened(false);

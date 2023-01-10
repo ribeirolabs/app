@@ -8,27 +8,32 @@ import { appName, translations } from "@/app.config";
 import { useIsFetching } from "react-query";
 import { dispatchCustomEvent } from "@ribeirolabs/events";
 
-export const HeaderBase = ({ children }: PropsWithChildren) => {
+export function HeaderBase({ children }: PropsWithChildren) {
   return (
     <header className="print:hidden not-prose navbar bg-base-300 sticky top-0 z-50">
       <div className="w-content flex justify-between gap-2">{children}</div>
     </header>
   );
-};
+}
 
-export const AppHeader = () => {
+export function AppHeader() {
+  const { data: user } = trpc.useQuery(["user.me"]);
+
   return (
     <HeaderBase>
       <HeaderLogo appName={appName} />
-      <button
-        className="lg:hidden btn btn-circle btn-ghost"
-        onClick={() => dispatchCustomEvent("sidebar", "open")}
-      >
-        <MenuIcon size={22} />
-      </button>
+      <div className="flex items-center gap-4">
+        {user?.locked && <div className="badge badge-warning">read-only</div>}
+        <button
+          className="lg:hidden btn btn-circle btn-ghost"
+          onClick={() => dispatchCustomEvent("sidebar", "open")}
+        >
+          <MenuIcon size={22} />
+        </button>
+      </div>
     </HeaderBase>
   );
-};
+}
 
 export function HeaderLogo({ appName }: { appName: string }) {
   const router = useRouter();
