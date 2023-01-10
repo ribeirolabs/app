@@ -34,10 +34,15 @@ export const ssp = async (
     },
   });
 
-  await ssr.fetchQuery("auth.getSession");
+  await Promise.all([
+    ssr.fetchQuery("auth.getSession"),
+    ssr.fetchQuery("user.me"),
+  ]);
 
   let error: {
     code: TRPC_ERROR_CODE_KEY;
+    message?: string;
+    cause?: string;
   } | null = null;
 
   try {
@@ -47,6 +52,7 @@ export const ssp = async (
 
     error = {
       code: errorCode,
+      message: e.message,
     };
 
     if (errorCode === "UNAUTHORIZED") {

@@ -52,7 +52,11 @@ const DEFAULT_ERRORS: Partial<Record<TRPC_ERROR_CODE_KEY, string>> = {
 export const ErrorPage = ({
   children,
   code,
-}: PropsWithChildren<{ code?: TRPC_ERROR_CODE_KEY | null }>) => {
+  message,
+}: PropsWithChildren<{
+  message?: string;
+  code?: TRPC_ERROR_CODE_KEY | null;
+}>) => {
   if (code == null) {
     return <>{children}</>;
   }
@@ -64,7 +68,7 @@ export const ErrorPage = ({
       </div>
 
       <h1 className="align-middle">
-        {errors?.[code] ?? DEFAULT_ERRORS[code] ?? code}
+        {message ?? errors?.[code] ?? DEFAULT_ERRORS[code] ?? code}
       </h1>
 
       <BackHomepage />
