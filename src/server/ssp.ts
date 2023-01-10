@@ -34,11 +34,6 @@ export const ssp = async (
     },
   });
 
-  await Promise.all([
-    ssr.fetchQuery("auth.getSession"),
-    ssr.fetchQuery("user.me"),
-  ]);
-
   let error: {
     code: TRPC_ERROR_CODE_KEY;
     message?: string;
@@ -46,6 +41,11 @@ export const ssp = async (
   } | null = null;
 
   try {
+    await Promise.all([
+      ssr.fetchQuery("auth.getSession"),
+      ssr.fetchQuery("user.me"),
+    ]);
+
     await Promise.all(([] as Promise<any>[]).concat(cb(ssr, session)));
   } catch (e: any) {
     const errorCode: TRPC_ERROR_CODE_KEY = e.code;

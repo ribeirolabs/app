@@ -73,7 +73,7 @@ export const AppSidebar = ({ children }: PropsWithChildren) => {
           {children}
           <div className="divider"></div>
           <li>
-            <button onClick={() => signOut({ callbackUrl: "/" })}>
+            <button onClick={() => signOut({ callbackUrl: "/auth/signin" })}>
               <LogoutIcon size={18} />
               {translations?.sign_out ?? "Log out"}
             </button>
