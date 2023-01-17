@@ -50,6 +50,8 @@ export const ssp = async (
   } catch (e: any) {
     const errorCode: TRPC_ERROR_CODE_KEY = e.code;
 
+    console.error(e);
+
     error = {
       code: errorCode,
       message: e.message,
