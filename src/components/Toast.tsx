@@ -6,8 +6,8 @@ import { dispatchCustomEvent } from "@ribeirolabs/events";
 type ToastWithId = Pick<AlertProps, "type"> & { id: string; message: string };
 
 const TOAST_TIMEOUT: Record<string, number> = {
-  error: 5000,
-  default: 3000,
+  error: 7000,
+  default: 5000,
 };
 
 export const addToast = (message: string, type: AlertType, id?: string) => {
