@@ -4,7 +4,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/server/db/client";
 import { env } from "@/env/server.mjs";
 import { getLocale, getTimezone } from "@common/utils/locale";
-import { AdapterUser } from "next-auth/adapters";
 
 const authorizationUrl = new URL(
   "https://accounts.google.com/o/oauth2/v2/auth"
@@ -56,6 +55,15 @@ export const authOptions: NextAuthOptions = {
           },
         },
       });
+    },
+    async signOut({ session }) {
+      prisma.session
+        .delete({
+          where: {
+            sessionToken: session.sessionToken,
+          },
+        })
+        .catch(() => void 0);
     },
   },
   // Configure one or more authentication providers
