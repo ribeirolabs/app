@@ -37,6 +37,7 @@ export type AlertProps = {
   fluid?: boolean;
   inverse?: boolean;
   className?: string;
+  hideIcon?: boolean;
 };
 
 export const Alert = ({
@@ -46,6 +47,7 @@ export const Alert = ({
   fluid,
   inverse,
   className,
+  hideIcon,
 }: AlertProps) => {
   const Icon = ICONS[type];
 
@@ -65,7 +67,7 @@ export const Alert = ({
       onClick={onClick}
     >
       <div className="w-full">
-        <Icon size={24} />
+        {hideIcon ? null : <Icon size={24} />}
 
         <span className="leading-4 text-sm">{children}</span>
       </div>
