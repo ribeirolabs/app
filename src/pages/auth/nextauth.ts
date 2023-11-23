@@ -24,8 +24,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-  },
-  events: {
+
     async signIn({ user, account }) {
       const email = user.email;
       if (!email) {
@@ -35,18 +34,25 @@ export const authOptions: NextAuthOptions = {
       if (access_token == null) {
         throw new Error("[sign-in] Missing access_token");
       }
-      await prisma.account.update({
-        data: {
-          access_token: account.access_token,
-          id_token: account.id_token,
-          scope: account.scope,
-          expires_at: account.expires_at,
-          refresh_token: account.refresh_token,
-          user: {
-            connect: {
-              email,
-            },
+      const payload = {
+        access_token: access_token,
+        id_token: account.id_token,
+        type: account.type,
+        scope: account.scope,
+        expires_at: account.expires_at,
+        refresh_token: account.refresh_token,
+        user: {
+          connect: {
+            email,
           },
+        },
+      };
+      await prisma.account.upsert({
+        update: payload,
+        create: {
+          ...payload,
+          providerAccountId: account.providerAccountId,
+          provider: account.provider,
         },
         where: {
           provider_providerAccountId: {
@@ -55,7 +61,10 @@ export const authOptions: NextAuthOptions = {
           },
         },
       });
+      return true;
     },
+  },
+  events: {
     async signOut({ session }) {
       prisma.session
         .delete({
