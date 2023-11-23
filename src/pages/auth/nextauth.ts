@@ -24,48 +24,6 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-
-    async signIn({ user, account }) {
-      console.log("\n\n");
-      console.log("SIGN_IN", { user, account });
-      console.log("\n\n");
-      const email = user.email;
-      if (!email) {
-        throw new Error("[sign-in] Missing email");
-      }
-      const access_token = account.access_token;
-      if (access_token == null) {
-        throw new Error("[sign-in] Missing access_token");
-      }
-      const payload = {
-        access_token: access_token,
-        id_token: account.id_token,
-        type: account.type,
-        scope: account.scope,
-        expires_at: account.expires_at,
-        refresh_token: account.refresh_token,
-        user: {
-          connect: {
-            email,
-          },
-        },
-      };
-      await prisma.account.upsert({
-        update: payload,
-        create: {
-          ...payload,
-          providerAccountId: account.providerAccountId,
-          provider: account.provider,
-        },
-        where: {
-          provider_providerAccountId: {
-            providerAccountId: account.providerAccountId,
-            provider: account.provider,
-          },
-        },
-      });
-      return true;
-    },
   },
   events: {
     async signOut({ session }) {
