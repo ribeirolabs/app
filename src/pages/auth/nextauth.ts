@@ -26,6 +26,9 @@ export const authOptions: NextAuthOptions = {
     },
 
     async signIn({ user, account }) {
+      console.log("\n\n");
+      console.log("SIGN_IN", { user, account });
+      console.log("\n\n");
       const email = user.email;
       if (!email) {
         throw new Error("[sign-in] Missing email");
