@@ -9,6 +9,8 @@ export const ProtectedPage = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("session", session);
+
     if (session.data == null && session.status === "success") {
       const callbackUrl = encodeURIComponent(
         window.location.pathname + window.location.search
