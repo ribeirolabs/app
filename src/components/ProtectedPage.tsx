@@ -16,9 +16,10 @@ export const ProtectedPage = ({ children }: { children: ReactNode }) => {
         window.location.pathname + window.location.search
       );
 
+      console.error("Redirecting to login, no valid session", session);
       router.push("/auth/signin?callbackUrl=" + callbackUrl);
     }
-  }, [session, router]);
+  }, [session]);
 
   if (session.data == null) {
     return null;
