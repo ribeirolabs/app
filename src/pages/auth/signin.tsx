@@ -1,6 +1,5 @@
 import { InferGetServerSidePropsType } from "next";
 import { getProviders, signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 import { appName, auth, translations } from "@/app.config";
 
 export async function getServerSideProps() {
@@ -14,8 +13,6 @@ export async function getServerSideProps() {
 export default function SignInPage({
   providers,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const router = useRouter();
-
   return (
     <div className="grid h-screen w-screen place-content-center">
       <h2 className="font-brand">ribeirolabs / {appName}</h2>
@@ -27,7 +24,7 @@ export default function SignInPage({
             signIn(
               provider.id,
               {
-                callbackUrl: (router.query.callbackUrl as string | null) ?? "/",
+                callbackUrl: "/",
               },
               {
                 scope: [

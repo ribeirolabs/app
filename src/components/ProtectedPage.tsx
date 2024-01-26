@@ -5,19 +5,17 @@ import { ErrorBoundary } from "react-error-boundary";
 import { AppShell } from "./AppShell";
 
 export const ProtectedPage = ({ children }: { children: ReactNode }) => {
-  const session = trpc.useQuery(["auth.getSession"]);
+  const session = trpc.useQuery(["auth.getSession"], {
+    ssr: false,
+  });
   const router = useRouter();
 
   useEffect(() => {
     console.log("session", session);
 
     if (session.data == null && session.status === "success") {
-      const callbackUrl = encodeURIComponent(
-        window.location.pathname + window.location.search
-      );
-
       console.error("Redirecting to login, no valid session", session);
-      router.push("/auth/signin?callbackUrl=" + callbackUrl);
+      router.push("/auth/signin");
     }
   }, [session]);
 

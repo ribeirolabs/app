@@ -61,9 +61,7 @@ export const ssp = async (
       return {
         redirect: {
           permanent: false,
-          destination: `/auth/signin?callbackUrl${encodeURIComponent(
-            ctx.resolvedUrl
-          )}`,
+          destination: `/auth/signin?callbackUrl${encodeURIComponent("/")}`,
         },
       };
     }
