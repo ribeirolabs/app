@@ -5,9 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { AppShell } from "./AppShell";
 
 export const ProtectedPage = ({ children }: { children: ReactNode }) => {
-  const session = trpc.useQuery(["auth.getSession"], {
-    ssr: false,
-  });
+  const session = trpc.useQuery(["auth.getSession"]);
   const router = useRouter();
 
   useEffect(() => {

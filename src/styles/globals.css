@@ -59,11 +59,18 @@
     font-size: 0.9rem;
   }
 
-  .btn-action:disabled {
+  .btn-action:disabled,
+  .btn[data-loading="true"] {
     @apply btn-disabled;
   }
 
-  .btn-outline:not(.btn-error, .btn-success, .btn-info, .btn-warning, .btn-primary) {
+  .btn-outline:not(
+      .btn-error,
+      .btn-success,
+      .btn-info,
+      .btn-warning,
+      .btn-primary
+    ) {
     border-color: #777;
   }
 
